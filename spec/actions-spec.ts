@@ -1,7 +1,7 @@
 import {
   SolanaPaySpecGetResponse,
   SolanaPaySpecPostRequestBody,
-  SolanaPaySpecPostResponse
+  SolanaPaySpecPostResponse,
 } from './solana-pay-spec';
 
 export interface ActionsSpecGetResponse extends SolanaPaySpecGetResponse {
@@ -20,13 +20,12 @@ export interface ActionsSpecGetResponse extends SolanaPaySpecGetResponse {
   error?: ActionError;
 }
 
-export interface ActionsSpecPostResponse extends SolanaPaySpecPostResponse {
-}
+export interface ActionsSpecPostResponse extends SolanaPaySpecPostResponse {}
 
 // Linked action inspired by HAL https://datatracker.ietf.org/doc/html/draft-kelly-json-hal-11
 export interface LinkedAction {
-  href: string; // solana pay/actions get/post url
-  label: string; // button text
+  href?: string; // solana pay/actions get/post url
+  label?: string; // button text
   // optional parameters for the action, e.g. input fields, inspired by OpenAPI
   // enforcing single parameter for now for simplicity and determenistic client UIs
   // can be extended to multiple inputs w/o breaking change by switching to Parameter[]
@@ -41,8 +40,7 @@ export interface Parameter {
 
 // No changes
 export interface ActionsSpecPostRequestBody
-  extends SolanaPaySpecPostRequestBody {
-}
+  extends SolanaPaySpecPostRequestBody {}
 
 // A common error data structure that should be used in all responses for error indication,
 // can be used in both GET and POST and extended with additional fields if needed
@@ -52,5 +50,4 @@ export interface ActionError {
 
 // Error response that can be used in both GET and POST for non 200 status codes
 // interoperable with: https://github.com/anza-xyz/solana-pay/blob/master/SPEC1.1.md#error-handling
-export interface ActionsSpecErrorResponse extends ActionError {
-}
+export interface ActionsSpecErrorResponse extends ActionError {}
